@@ -9,7 +9,7 @@
   "files": ["dist"],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc --project tsconfig.json && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
