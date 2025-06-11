@@ -1,54 +1,81 @@
-# React + TypeScript + Vite
+# 📊 hrnet-react-datatable
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+**Un composant React modulaire de tableau de données avec tri, pagination et recherche intégrés.**  
+Créé dans le cadre du projet 14 – OpenClassrooms : "Faites passer une librairie jQuery vers React".
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## ✨ Fonctionnalités
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ✅ Tri des colonnes
+- 🔍 Recherche globale
+- 📄 Pagination automatique
+- ⚙️ Entièrement typé en TypeScript
+- 📦 Réutilisable dans tout projet React
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+
+## 🚀 Installation
+
+### Depuis npm (optionnel)
+```bash
+npm install hrnet-react-datatable
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Depuis GitHub
+```bash
+npm install ArthurDenis62/hrnet-react-datatable
 ```
+
+## 🧪 Utilisation
+
+```tsx
+import { DataTable } from 'hrnet-react-datatable'
+
+const data = [
+  { firstName: 'Jean', lastName: 'Dupont', department: 'Finance' },
+  { firstName: 'Alice', lastName: 'Martin', department: 'RH' }
+]
+
+const columns = [
+  { label: 'Prénom', accessor: 'firstName', sortable: true },
+  { label: 'Nom', accessor: 'lastName', sortable: true },
+  { label: 'Département', accessor: 'department', sortable: true }
+]
+
+function App() {
+  return <DataTable data={data} columns={columns} itemsPerPage={5} />
+}
+```
+
+## 🧾 Props
+
+| Prop           | Type             | Description                            |
+|----------------|------------------|----------------------------------------|
+| `data`         | `T[]`            | Tableau de données                     |
+| `columns`      | `Column<T>[]`    | Définition des colonnes à afficher     |
+| `itemsPerPage` | `number`         | (optionnel) Nombre d’éléments par page |
+
+### `Column<T>` :
+
+```ts
+{
+  label: string
+  accessor: keyof T
+  sortable?: boolean
+}
+```
+
+## 🧱 Structure technique
+
+- React + TypeScript
+- Vite (build)
+- Build exporté en `dist/` avec types `.d.ts` inclus
+- Utilisable via GitHub ou npm
+
+## 📄 Licence
+
+MIT
+
+## 👨‍💻 Auteur
+
+Arthur Denis — [GitHub @ArthurDenis62](https://github.com/ArthurDenis62)
